@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    {% if config["DEBUG"] == "True" %}
+    {{ config["DEBUG"] }}
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    {% endif %}
+    <meta name="robots" content="noindex">
+    <title>Call Report</title>
+
+{#    jQuery#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+{#    Bootstrap#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+{#    Bootstrap-Table#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.14.2/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.14.2/bootstrap-table.min.css">
+
+    {#    jQuery TableExport plugin#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.37/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.min.js"></script>
+    <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+
+{#    Bootstrap-table export plugin#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.14.2/extensions/export/bootstrap-table-export.min.js"></script>
+
+{#    Moment.js#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+{#    Toastr.js#}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
+
+{#    Bootstrap 4 TempusDominus#}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" />
+
+{#    FontAwesome#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    {#    flag-icon-css#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.2/css/flag-icons.min.css" rel="stylesheet">
+    
+{#    SIPJS + Fingeprint#}
+    <link rel="preconnect" href="https://openfpcdn.io">
+    <link rel="preconnect" href="https://metrics.voloshanenko.com">
+    <!-- <script src="https://fpcdn.io/v3/YgnITggTLsi11Fp5ZA6y/iife.min.js"></script>  -->
+    <script src="https://sipjs.com/download/sip-0.15.0.min.js"></script>
+
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <script src="{{ url_for('static', filename='fp.min.js')}}"></script>
+
+{#    Custom JS/CSS for application#}
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+</head>
+{% block body %}{% endblock %}

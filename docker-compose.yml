@@ -1,0 +1,22 @@
+version: '2'
+services:
+  web:
+    image: docker.voloshanenko.com/click2dial
+    restart: unless-stopped
+    environment:
+    - VIRTUAL_HOST=${VIRTUAL_HOST}
+    - VIRTUAL_PORT=${VIRTUAL_PORT}
+    - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+    - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - db:/app/app/db
+    networks:
+      - webproxy
+
+volumes:
+   db:
+
+networks:
+  webproxy:
+    external:
+      name: webproxy

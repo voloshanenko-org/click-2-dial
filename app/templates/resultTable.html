@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+{% block body %}
+<script src="{{ url_for('static', filename='app.js')}}"></script>
+
+<div class="container horizontal-center" style="padding: 10px; ">
+
+    <!-- Quick links -->
+    <h1></h1>
+    <br/>
+    <div class="row">
+        <div class="col-md-1">
+            <h5>Quick Filters</h5>
+        </div>
+        <div class="col-md-9" align="left">
+            <a href="#" class="badge badge-info" onclick="setCurrentWeek();">Current week</a>
+            <a href="#" class="badge badge-light" onclick="setLastWeek();">Last week</a>
+        </div>
+
+        {% if not current_user.is_anonymous %}
+
+            <div class="col-md-1" align="center">
+                <a href="{{ url_for('logout') }}" id="username" value="{{ current_user.username }}" class="badge badge-light">User: <h5>{{ current_user.username }}
+                    <i class="fa fa-times-circle" aria-hidden="true"></i></h5>
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
+    <hr>
+    <br/>
+
+    <!-- Form controls -->
+    <div class="form-group row">
+
+        <!-- Range of days pickers -->
+        <div class="col-md-3 period_controls" style="display: none;">
+            <div class="input-group date" id="date_start_picker" data-target-input="nearest">
+                <div class="input-group-prepend" data-target="#date_start_picker" data-toggle="datetimepicker">
+                    <span class="input-group-text">FROM</span>
+                </div>
+                <input type="text" class="form-control datetimepicker-input" data-target="#date_start_picker" data-toggle="datetimepicker"/>
+                <div class="input-group-append" data-target="#date_start_picker" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 period_controls" style="display: none;">
+            <div class="input-group date" id="date_end_picker" data-target-input="nearest">
+                <div class="input-group-prepend" data-target="#date_end_picker" data-toggle="datetimepicker">
+                    <span class="input-group-text">TO</span>
+                </div>
+                <input type="text" class="form-control datetimepicker-input" data-target="#date_end_picker" data-toggle="datetimepicker"/>
+                <div class="input-group-append" data-target="#date_end_picker" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search button -->
+        <div class="col-md-2">
+            <div class="btn btn-primary" onclick="LoadCallsData();"><i class="fa fa-search" aria-hidden="true"></i> Seacrh</div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <!-- Tabs -->
+            <div class="form-group row">
+                <div class="col-lg-10">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="all-visits-tab" data-toggle="tab" href="#all-visits" role="tab" aria-controls="all-visits" aria-selected="true">All visits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="blocked-visitors-tab" data-toggle="tab" href="#blocked-visitors" role="tab" aria-controls="blocked-visitors" aria-selected="false">Blocked visitors</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            <!-- Result tables -->
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="all-visits" role="tabpanel" aria-labelledby="all-visits-tab">
+                        <div id="all-visits-toolbar"></div>
+                        <table
+                            id="all-visits-table"
+                            data-toggle="true"
+                            data-toolbar="#all-visits-toolbar"
+                            data-search="true"
+                            data-show-columns="true"
+                            data-pagination="true"
+                            data-show-fullscreen="true"
+                            data-show-export="true">
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="blocked-visitors" role="tabpanel" aria-labelledby="blocked-visitors-tab">
+                        <div id="blocked-visitors-toolbar"></div>
+                        <table
+                            id="blocked-visitors-table"
+                            data-toggle="true"
+                            data-toolbar="#blocked-visitors-toolbar"
+                            data-search="true"
+                            data-show-columns="true"
+                            data-pagination="true"
+                            data-show-fullscreen="true"
+                            data-show-export="true">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loadingspinner" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="container" style="padding: 10px; ">
+    <div class="col-md-10">
+        <footer class="pull-right">
+            <span class="text-muted"><a href="https://www.linkedin.com/in/voloshanenko">Igor Voloshanenko</a> <i class="fa fa-copyright"></i> 2022</span>
+        </footer>
+    </div>
+</div>
+
+{% endblock %}

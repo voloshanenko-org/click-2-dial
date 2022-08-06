@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+<script src="{{ url_for('static', filename='call.js')}}"></script>
+
+<div class="container horizontal-center" style="padding: 10px; ">
+    <div class="row">
+        <div class="col-xl-10 flex-xl-column">
+            <div class="row d-flex justify-content-center">
+                <h3>
+                    <span id="callLabel" class="text-muted" style="display: none">Click to call!</span>
+                </h3>
+            </div>
+            <div class="row d-flex justify-content-center">
+                    <img src="{{ url_for('static', filename='img/call.svg') }}" id="callButton" style="display: none"></img>
+                    <img src="{{ url_for('static', filename='img/terminate.svg') }}" id="cancelButton" style="display: none"></img>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <h3>
+                    <span id="callStatus" class="text-muted" style="display: none"></span>
+                </h3> 
+                <audio id="remoteMedia"></audio>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="container" style="padding: 10px; ">
+    <div class="col-md-10">
+        <footer class="pull-left">
+            <span id="author_label" class="text-muted"><a href="https://www.linkedin.com/in/voloshanenko">Igor Voloshanenko</a> <i class="fa fa-copyright"></i> 2022</span>
+            <span id="visitorID_label" class="text-muted"></span>
+        </footer>
+    </div>
+</div>
+
+{% endblock %}

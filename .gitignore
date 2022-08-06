@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*/*.swp
+*.swp
+.DS_Store
+app/app.db
+env.*
